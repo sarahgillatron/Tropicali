@@ -1,4 +1,4 @@
-const { series } = require('gulp');
+const { series, parallel } = require('gulp');
 var gulp = require('gulp')
 var sass = require('gulp-sass')
 var cleanCss = require('gulp-clean-css')
@@ -7,7 +7,8 @@ var sourcemaps = require('gulp-sourcemaps')
 
 var browserSync = require('browser-sync').create()
 
-var imagemin = require('gulp-imagemin');
+var imagemin = require('gulp-imagemin')
+var ghpages = require('gh-pages')
 
 sass.compiler = require('node-sass');
 
@@ -54,8 +55,11 @@ function watch() {
   gulp.watch('src/fonts/*', fonts)
 }
 
-
-
+function deploy (cb) {
+  ghpages.publish("dist")
+  cb();
+}
 
 
 exports.default = series(images, fonts, runSass, html, watch);
+exports.deploy = deploy;
