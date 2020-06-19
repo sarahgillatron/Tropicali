@@ -1,4 +1,5 @@
 @custom-media --mq-medium (max-width: 800px);
+@custom-media --mq-small (max-width:550px);
 
 
 :root {
@@ -10,6 +11,7 @@
   --main-spacing: 64px;
   --gap-spacing: 40px;
   --hero-spacing: 240px;
+  --centered-width: 50%;
 
   --header-height: 80px;
 }
@@ -19,6 +21,16 @@
     --main-spacing: 40px;
     --gap-spacing: 32px;
     --hero-spacing: 120px;
+    --centered-width: 75%;
+
+  }
+}
+
+@media (--mq-small) {
+  :root {
+    --main-spacing: 32px;
+    --hero-spacing: 80px;
+
   }
 }
 
@@ -60,6 +72,10 @@ section.hero.menu {
   background-position: center;
 }
 
+section.hero h2 {
+  margin-bottom:10px;
+}
+
 section.grid {
   display:grid;
   grid-template-columns: 1fr 1fr;
@@ -80,4 +96,25 @@ section.grid p {
 
 .button.button-full {
   background-color: var(--primary-color);
+}
+
+section.centered {
+  text-align:center;
+  width:var(--centered-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (--mq-small) {
+  section.grid {
+    grid-template-columns: 1fr;
+  }
+
+  header img {
+    width: 160px;
+  }
+
+  .button {
+    padding: 8px 15px 8px 15px;
+  }
 }
